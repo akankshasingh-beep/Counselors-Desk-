@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Counselors Desk – New Empathy in Middle Schoolers</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F5F0E8;
+    --deep-red: #8B1A1A;
+    --soft-red: #C0392B;
+    --blue: #4A7BA7;
+    --light-blue: #D6E8F5;
+    --dark: #1a1a1a;
+    --mid: #555;
+    --light: #888;
+    --border: #ddd5c8;
+    --white: #ffffff;
+    --card-bg: #FDFAF5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    font-family: 'Source Serif 4', Georgia, serif;
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  /* ── HEADER ── */
+  header {
+    background: var(--white);
+    border-bottom: 3px solid var(--deep-red);
+    padding: 28px 40px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .logo-block { display: flex; flex-direction: column; }
+  .logo-top {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 13px;
+    letter-spacing: 3px;
+    color: var(--deep-red);
+    text-transform: uppercase;
+  }
+  .logo-main {
+    font-family: 'Playfair Display', serif;
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--dark);
+    line-height: 1;
+    letter-spacing: -0.5px;
+  }
+  .school-tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: var(--blue);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .header-right {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--light);
+    text-align: right;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    background: var(--deep-red);
+    color: var(--white);
+    padding: 60px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 40px,
+      rgba(255,255,255,0.02) 40px,
+      rgba(255,255,255,0.02) 80px
+    );
+  }
+  .hero-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 16px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 52px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: #f9c9c9;
+  }
+  .hero-meta {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    margin-top: 12px;
+  }
+
+  /* ── MAIN LAYOUT ── */
+  .page-wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 50px 24px 80px;
+  }
+
+  /* ── SECTION LABELS ── */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 48px 0 24px;
+  }
+  .section-divider span {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--deep-red);
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .section-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ── EMPATHY COMPARISON ── */
+  .empathy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+  @media(max-width:600px){ .empathy-grid { grid-template-columns: 1fr; } }
+
+  .empathy-card {
+    border-radius: 4px;
+    padding: 28px 24px;
+    border: 1.5px solid transparent;
+  }
+  .empathy-card.new {
+    background: var(--card-bg);
+    border-color: var(--blue);
+  }
+  .empathy-card.old {
+    background: #fff8f8;
+    border-color: #e0a0a0;
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .new .card-title { color: var(--blue); }
+  .old .card-title { color: var(--soft-red); }
+
+  .empathy-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .empathy-card li {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px;
+    color: var(--mid);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .empathy-card li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    font-size: 12px;
+  }
+  .new li::before { color: var(--blue); }
+  .old li::before { color: var(--soft-red); }
+
+  /* ── ARTICLE BODY ── */
+  .article-intro {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--dark);
+    margin-bottom: 28px;
+  }
+  .article-intro p + p { margin-top: 16px; }
+
+  .highlight-bar {
+    background: var(--deep-red);
+    color: white;
+    padding: 14px 24px;
+    border-radius: 2px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    margin: 32px 0 24px;
+    text-align: center;
+  }
+
+  .context-tag {
+    display: inline-block;
+    background: var(--blue);
+    color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 2px;
+    margin-bottom: 16px;
+  }
+
+  .practice-block {
+    background: var(--card-bg);
+    border-left: 4px solid var(--blue);
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    border-radius: 0 4px 4px 0;
+  }
+  .practice-block.pastoral {
+    border-left-color: var(--deep-red);
+  }
+  .practice-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    color: var(--border);
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .practice-block h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--blue);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .practice-block.pastoral h3 { color: var(--deep-red); }
+  .practice-block p {
+    font-size: 15px;
+    line-height: 1.75;
+    color: var(--mid);
+    margin-bottom: 12px;
+  }
+  .practice-block p:last-child { margin-bottom: 0; }
+  .practice-block strong { color: var(--dark); }
+  .practice-block em {
+    font-style: italic;
+    color: var(--deep-red);
+  }
+
+  .atl-list {
+    list-style: none;
+    padding: 0;
+    margin: 8px 0 0;
+  }
+  .atl-list li {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px;
+    color: var(--blue);
+    padding: 6px 0 6px 20px;
+    position: relative;
+    border-bottom: 1px solid var(--border);
+  }
+  .atl-list li:last-child { border-bottom: none; }
+  .atl-list li::before { content: '◆'; position: absolute; left: 0; font-size: 8px; top: 9px; }
+
+  .closing-quote {
+    text-align: center;
+    padding: 40px 24px;
+    margin: 40px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .closing-quote blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(20px, 3vw, 28px);
+    font-style: italic;
+    color: var(--deep-red);
+    line-height: 1.5;
+  }
+  .credits {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--light);
+    text-align: right;
+    margin-top: 8px;
+  }
+
+  /* ── COMMENTS ── */
+  .comments-section { margin-top: 60px; }
+
+  .comment-form-wrap {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    padding: 32px;
+    margin-bottom: 40px;
+  }
+  .comment-form-wrap h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 6px;
+    color: var(--dark);
+  }
+  .comment-form-wrap p {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--light);
+    margin-bottom: 24px;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  @media(max-width:500px){ .form-row { grid-template-columns: 1fr; } }
+
+  .form-group { display: flex; flex-direction: column; gap: 6px; }
+  .form-group label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    padding: 10px 14px;
+    border: 1.5px solid var(--border);
+    border-radius: 3px;
+    background: var(--cream);
+    color: var(--dark);
+    outline: none;
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--blue); background: white; }
+
+  .btn-submit {
+    background: var(--deep-red);
+    color: white;
+    border: none;
+    padding: 13px 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    margin-top: 8px;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn-submit:hover { background: #6d1414; transform: translateY(-1px); }
+
+  /* ── COMMENT CARDS ── */
+  .comments-list { display: flex; flex-direction: column; gap: 20px; }
+  .comment-card {
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: 4px;
+    padding: 24px 28px;
+    animation: fadeIn 0.4s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .comment-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 12px;
+  }
+  .comment-author {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--dark);
+  }
+  .comment-role {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: var(--blue);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .comment-date {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    color: var(--light);
+  }
+  .comment-text {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--mid);
+  }
+  .comment-question {
+    display: inline-block;
+    background: var(--light-blue);
+    color: var(--blue);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .like-btn {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--light);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: all 0.2s;
+  }
+  .like-btn:hover, .like-btn.liked { border-color: var(--deep-red); color: var(--deep-red); }
+
+  .no-comments {
+    text-align: center;
+    padding: 40px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--light);
+    font-size: 14px;
+    border: 1.5px dashed var(--border);
+    border-radius: 4px;
+  }
+
+  footer {
+    text-align: center;
+    padding: 32px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--light);
+    border-top: 1px solid var(--border);
+    margin-top: 60px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo-block">
+    <span class="logo-top">The Counselors</span>
+    <span class="logo-main">DESK</span>
+    <span class="school-tag">Pathways School · Noida</span>
+  </div>
+  <div class="header-right">
+    IB MYP Resource<br>Middle School Wellbeing
+  </div>
+</header>
+
+<div class="hero">
+  <div class="hero-label">Featured Article · Counselors Desk</div>
+  <h1>"New Empathy" in <em>Middle Schoolers</em></h1>
+  <p class="hero-meta">Credits: Jessica Luna &nbsp;·&nbsp; IB MYP Educators' Resource</p>
+</div>
+
+<div class="page-wrap">
+
+  <!-- INTRO -->
+  <div class="article-intro">
+    <p>Middle school is one of the most emotionally turbulent phases of a young person's life. As IB MYP educators, we are uniquely positioned not just to teach, but to model and nurture the kind of empathy our students will carry into the world.</p>
+    <p>The graphic below draws a powerful distinction. The <strong>old empathy</strong> was about absorbing others' emotions — losing yourself in them, trying to feel exactly what someone else feels. The <strong>new empathy</strong> is more grounded and more sustainable. It is about <em>presence, validation, and intentional support.</em></p>
+  </div>
+
+  <!-- EMPATHY COMPARISON -->
+  <div class="section-divider"><span>The Distinction</span></div>
+
+  <div class="empathy-grid">
+    <div class="empathy-card new">
+      <div class="card-title">✦ The New Empathy</div>
+      <ul>
+        <li>Being present enough to feel the energy of the room</li>
+        <li>Recognising that emotions are temporary &amp; allowing processing space/time</li>
+        <li>Accepting your power &amp; responsibility to simply listen</li>
+        <li>Respecting others' experience (even if you don't understand first-hand)</li>
+        <li>Validating others' emotions PLUS thoughts, feelings, perceptions</li>
+        <li>Offering platinum support — asking what support they need</li>
+      </ul>
+    </div>
+    <div class="empathy-card old">
+      <div class="card-title">✦ The Old Empathy</div>
+      <ul>
+        <li>Losing your self-control in others' emotions</li>
+        <li>Focusing only on others' emotions</li>
+        <li>Trying to feel others' emotions yourself</li>
+        <li>Ignoring established boundaries</li>
+        <li>Thinking you're not empathetic because you've had different experiences</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CLASSROOM PRACTICE -->
+  <div class="highlight-bar">Here is how we can bring this into our classrooms &amp; pastoral practice</div>
+
+  <div class="section-divider"><span>In the Classroom</span></div>
+
+  <div class="practice-block">
+    <div class="practice-num">01</div>
+    <h3>Be Present</h3>
+    <p>Before diving into a lesson, take thirty seconds to genuinely notice how your students are showing up that day. A simple <strong><em>"How is everyone doing today?"</em></strong> signals that you see them as whole people, not just learners.</p>
+    <p>Validate emotions without fixing them. When a student is upset or overwhelmed, resist the instinct to immediately solve the problem. Acknowledge first — <em>"That sounds really hard"</em> — before moving into solutions. This directly mirrors the "new empathy" principle of validating thoughts, feelings, and perceptions together.</p>
+    <p>Recognise that emotions are temporary. In MYP, students face real academic pressure. Normalise the idea that stress, frustration, and anxiety are passing states, not permanent identities. Build brief emotional check-ins or reflection moments into your weekly rhythm.</p>
+  </div>
+
+  <div class="section-divider"><span>In Pastoral Support</span></div>
+
+  <div class="practice-block pastoral">
+    <div class="practice-num">02</div>
+    <h3>Ask, Don't Assume</h3>
+    <p>The concept of <strong>platinum support</strong> — asking what kind of support someone needs rather than deciding for them — is transformative in a pastoral setting. Train yourself and your students to ask:</p>
+    <p><em>"Would you like a suggestion, or do you just need me to listen right now?"</em></p>
+    <p><strong>Create psychological safety in your tutor group.</strong> Students need to know that their boundaries will be respected and their experiences won't be dismissed just because others haven't shared them. Regularly affirm that different backgrounds and different feelings are all equally valid.</p>
+  </div>
+
+  <!-- DEVELOPING EMPATHY -->
+  <div class="section-divider"><span>Developing Empathy as a Skill</span></div>
+
+  <div class="practice-block">
+    <div class="practice-num"></div>
+    <h3>IB Learner Profile Connection</h3>
+    <p>Empathy in the IB framework connects directly to the Learner Profile attribute of being <strong>caring</strong>, but it also underpins <strong>open-mindedness</strong> and <strong>balance</strong>. Consider weaving these conversations into:</p>
+    <ul class="atl-list">
+      <li>Tutor time: short weekly discussions on real social scenarios</li>
+      <li>ATL skill-building: social and communication skills explicitly taught, not assumed</li>
+    </ul>
+  </div>
+
+  <div class="closing-quote">
+    <blockquote>"What do you need from me right now?"</blockquote>
+    <p class="credits">Credits: Jessica Luna · The Counselors Desk · Pathways School, Noida</p>
+  </div>
+
+  <!-- COMMENTS -->
+  <div class="comments-section">
+    <div class="section-divider"><span>Teacher Reflections</span></div>
+
+    <div class="comment-form-wrap">
+      <h2>Share Your Thoughts</h2>
+      <p>We'd love to hear how this resonates with your classroom experience. All responses are from Pathways educators.</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" id="input-name" placeholder="Ms. Sharma / Mr. Patel…">
+        </div>
+        <div class="form-group">
+          <label>Role / Subject</label>
+          <input type="text" id="input-role" placeholder="e.g. MYP Humanities Tutor">
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-bottom:16px">
+        <label>Reflecting on…</label>
+        <select id="input-question">
+          <option value="">Select a reflection prompt</option>
+          <option value="Before reading this, which empathy model did you practice more often?">Before reading this, which empathy model did you practice more often?</option>
+          <option value="How realistic is the 30-second presence check before a lesson?">How realistic is the 30-second presence check before a lesson?</option>
+          <option value="How might the platinum support question change a student interaction?">How might the platinum support question change a student interaction?</option>
+          <option value="How would you explicitly teach empathy as a skill to your students?">How would you explicitly teach empathy as a skill to your students?</option>
+          <option value="General reflection on the article">General reflection on the article</option>
+        </select>
+      </div>
+
+      <div class="form-group" style="margin-bottom:20px">
+        <label>Your Reflection</label>
+        <textarea id="input-comment" rows="5" placeholder="Share a thought, a classroom story, or a question this article raised for you…"></textarea>
+      </div>
+
+      <button class="btn-submit" onclick="submitComment()">Post Reflection</button>
+    </div>
+
+    <div class="comments-list" id="comments-list">
+      <div class="no-comments" id="no-comments-msg">
+        Be the first to share your reflection on this article.
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  The Counselors Desk · Pathways School, Noida &nbsp;·&nbsp; An IB MYP Educator Resource &nbsp;·&nbsp; Credits: Jessica Luna
+</footer>
+
+<script>
+  const comments = [];
+
+  function submitComment() {
+    const name = document.getElementById('input-name').value.trim();
+    const role = document.getElementById('input-role').value.trim();
+    const question = document.getElementById('input-question').value;
+    const text = document.getElementById('input-comment').value.trim();
+
+    if (!name || !text) {
+      alert('Please enter your name and reflection before posting.');
+      return;
+    }
+
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' });
+
+    const comment = { name, role: role || 'Educator', question, text, date: dateStr, likes: 0, id: Date.now() };
+    comments.unshift(comment);
+    renderComments();
+
+    // reset
+    document.getElementById('input-name').value = '';
+    document.getElementById('input-role').value = '';
+    document.getElementById('input-question').value = '';
+    document.getElementById('input-comment').value = '';
+  }
+
+  function toggleLike(id) {
+    const c = comments.find(c => c.id === id);
+    if (!c) return;
+    c.liked = !c.liked;
+    c.likes += c.liked ? 1 : -1;
+    renderComments();
+  }
+
+  function renderComments() {
+    const list = document.getElementById('comments-list');
+    const noMsg = document.getElementById('no-comments-msg');
+
+    if (comments.length === 0) {
+      list.innerHTML = '<div class="no-comments" id="no-comments-msg">Be the first to share your reflection on this article.</div>';
+      return;
+    }
+
+    list.innerHTML = comments.map(c => `
+      <div class="comment-card">
+        <div class="comment-header">
+          <div>
+            <div class="comment-author">${escHtml(c.name)}</div>
+            <div class="comment-role">${escHtml(c.role)}</div>
+          </div>
+          <div class="comment-date">${c.date}</div>
+        </div>
+        ${c.question ? `<div class="comment-question">Re: ${escHtml(c.question)}</div>` : ''}
+        <div class="comment-text">${escHtml(c.text)}</div>
+        <button class="like-btn ${c.liked ? 'liked' : ''}" onclick="toggleLike(${c.id})">
+          ♥ ${c.likes > 0 ? c.likes + ' ' : ''}Helpful
+        </button>
+      </div>
+    `).join('');
+  }
+
+  function escHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+</script>
+</body>
+</html>
